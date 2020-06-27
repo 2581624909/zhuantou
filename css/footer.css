@@ -1,0 +1,38 @@
+#footer {
+    width: 100%;
+    margin-top: 10px;
+    height: 200px;
+    background-color: #333333;
+    color: #ffffff;
+    position: relative;
+}
+
+.f-left {
+    width: 100px;
+    height: 30px;
+    background-color: #ff3333;
+    position: absolute;
+    top: 70px;
+    left: 20%;
+    text-align: center;
+    line-height: 30px;
+}
+
+.f-right {
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    right: 20%;
+    display: flex;
+}
+
+.f-right>div {
+    flex: 1;
+    padding-left: 10px;
+    padding-top: 60px;
+}
+
+.f-right>div>p {
+    margin-top: 10px;
+    font-size: 12px;
+}
