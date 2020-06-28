@@ -51,6 +51,7 @@ html {
 }
 
 #sign-up,
-li {
+li,
+span{
     cursor: pointer;
 }

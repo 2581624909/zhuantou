@@ -72,4 +72,63 @@ function van(){
 }
 main.setOption(obj)
 }
+
+var imge = document.getElementById('imgess')
+var sp = document.getElementsByTagName('span')
+
+
+
+var obj = ["img/1.jpg","img/2.jpg","img/3.jpg"]
+var index = 0;
+sp[0].onclick=function(){
+
+	index--
+	if(index<0){
+		index=2
+	}
+	imge.src=obj[index]
+
+}
+sp[1].onclick=function(){
+	index++
+	if(index==obj.length){
+		index=0
+	}
+	imge.src=obj[index]
+}
+function times(){
+	if(index==obj.length-1){
+		index=-1
+	}
+	console.log(index)
+	index++
+	imge.src=obj[index]
+}
+var tim = setInterval(times,2000)
+
+var ir = document.getElementsByClassName('lr')
+var gid = document.getElementById('analytics')
+gid.onmouseover=function(){
+	//clearInterval(tim)
+}
+gid.onmouseout=function(){
 	
+}
+var sli = document.getElementById('sli')
+for(let i=0;i<obj.length;i++){
+	sli.innerHTML+='<span>'+(i+1)+'</span>'
+}
+sli.style.width=18*obj.length+'px'
+sli.style.marginLeft=-(18*obj.length)/2+'px'
+
+
+var spanes = sli.getElementsByTagName('span')
+for(let i = 0 ; i < spanes.length; i++){
+	spanes[i].onclick=function(){
+		index=i
+		if(index==obj.length){
+			index=0
+		}
+		imge.src=obj[index]
+	}
+}
