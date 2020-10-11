@@ -3,15 +3,35 @@ var vnase = document.getElementById('navse')
 var bsnav = echarts.init(vnase)
 var series = []
 var xAxis = []
-axios.get("https://edu.telking.com/api?type=month").then(function(data) {
-    console.log(data.data)
-	series=data.data.data.series
-	xAxis=data.data.data.xAxis
-	console.log(series)
-	console.log(xAxis)
-	van()
-})
 
+//异步亲请求
+function ajax(){
+	//创建XML对象
+	var xhr = window.XMLHttpRequest?new XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP")
+	
+	//返回数据
+	xhr.onload = function(){
+		console.log(xhr.responseText)
+		var data = JSON.parse( xhr.responseText)
+		
+		series=data.data.series
+		xAxis=data.data.xAxis
+		van()
+	}
+	
+	//出错执行
+	xhr.onerror = function(){
+		console.log('请求出错')
+	}
+	
+	//创建异步请求
+	xhr.open('GET','https://edu.telking.com/api?type=month',true)
+	
+	//执行异步请求
+	xhr.send()
+	
+}
+ajax()
 bsnav.setOption({
     series: [{
         name: '访问来源',
@@ -60,75 +80,63 @@ function van(){
         tetx: '标题？？'
     },
     xAxis: {
-        data: xAxis
+        data: xAxis,
     },
     yAxis: {},
     series: [{
         name: '',
         type: 'line',
-        data: series
+        data: series,
+		smooth: true,
+		color:'#4d8aef',
+		areaStyle:{
+			color:'#f3f6fe'
+		},
+		itemStyle :{
+			normal:{
+				label:{
+					show:true
+				}
+			}
+		}
     }],
 
 }
 main.setOption(obj)
 }
 
-var imge = document.getElementById('imgess')
-var sp = document.getElementsByTagName('span')
-
-
-
-var obj = ["img/1.jpg","img/2.jpg","img/3.jpg"]
-var index = 0;
-sp[0].onclick=function(){
-
-	index--
-	if(index<0){
-		index=2
+//轮播图自动切换
+var inputs =  document.getElementsByClassName('ininin')
+var i = 0 ;
+function lun(){
+	i++
+	if(i == inputs.length){
+		i=0
 	}
-	imge.src=obj[index]
-
+	inputs[i].checked='checked'
 }
-sp[1].onclick=function(){
-	index++
-	if(index==obj.length){
-		index=0
+var tim = setInterval(lun,2000)
+
+// 轮播图进入移出
+document.getElementById('analytics').onmouseover = function(){
+	clearInterval(tim)
+}
+document.getElementById('analytics').onmouseout = function(){
+	tim = setInterval(lun,2000)
+}
+
+// 轮播图左右按键
+document.getElementsByClassName('leftss')[0].onclick=function(){
+	i--;
+	if(i == inputs.length){
+		i=0
 	}
-	imge.src=obj[index]
+	inputs[i].checked='checked'
 }
-function times(){
-	if(index==obj.length-1){
-		index=-1
+document.getElementsByClassName('rightss')[0].onclick=function(){
+	i++;
+	if(i == inputs.length){
+		i=0
 	}
-	console.log(index)
-	index++
-	imge.src=obj[index]
-}
-var tim = setInterval(times,2000)
-
-var ir = document.getElementsByClassName('lr')
-var gid = document.getElementById('analytics')
-gid.onmouseover=function(){
-	//clearInterval(tim)
-}
-gid.onmouseout=function(){
-	
-}
-var sli = document.getElementById('sli')
-for(let i=0;i<obj.length;i++){
-	sli.innerHTML+='<span>'+(i+1)+'</span>'
-}
-sli.style.width=18*obj.length+'px'
-sli.style.marginLeft=-(18*obj.length)/2+'px'
-
-
-var spanes = sli.getElementsByTagName('span')
-for(let i = 0 ; i < spanes.length; i++){
-	spanes[i].onclick=function(){
-		index=i
-		if(index==obj.length){
-			index=0
-		}
-		imge.src=obj[index]
-	}
+	inputs[i].checked='checked'
 }
