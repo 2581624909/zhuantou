@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #box {
+        width: 100px;
+        height: 100px;
+        position: relative;
+    }
+    
+    #box div {
+        width: 100%;
+        height: 30px;
+        margin: 4px, 0, 0, 0;
+        position: absolute;
+        left: -100%;
+        transition: 1s;
+    }
+    
+    @keyframes bg {
+        0% {
+            transform: translate(0%);
+        }
+        100% {
+            transform: translate(100%);
+        }
+    }
+    
+    #box div:nth-child(1) {
+        background-color: aqua;
+    }
+    
+    #box div:nth-child(2) {
+        background-color: blue;
+        top: 30px;
+    }
+    
+    #box:hover>div:nth-child(1) {
+        animation: bg 1s ease-in-out 0s;
+        animation-fill-mode: forwards;
+    }
+    
+    #box:hover>div:nth-child(2) {
+        animation: bg 1s ease-in-out 0.3s;
+        animation-fill-mode: forwards;
+    }
+    /*    
+    //animation: 属性名 时间 动画效果 动画延迟;
+    //.a:nth-child(2) 选定.a的地2个dom
+    //#box:hover>div:nth-child(1){} 鼠标方式bom时触发子元素的第一个dom执行css
+
+     @keyframes bg {
+        0% {
+            transform: translate(0%);
+        }
+        100% {
+            transform: translate(100%);
+        }
+    }
+    定义动画 @keyframes 动画名称 {   使用dom要定位
+        0% {  动画百分比
+            transform: translate(0%);  执行css
+        }
+        100% {
+            transform: translate(100%);
+        }
+    }
+*/
+</style>
+
+<body>
+    <div id="box">
+        <div>1</div>
+        <div>2</div>
+    </div>
+</body>
+<script>
+    animation.setFillAfter(true)
+</script>
+
+</html>

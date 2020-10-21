@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				padding: 0;
+				margin: 0;
+				width: 100%;
+				height:100%;
+			}
+			#box1{
+				width: 200px;
+				height:200px;
+				border: solid 1px;
+				display: flex;
+				/* 横轴居中 */
+				justify-content: center;
+				-webkit-justify-content: center;
+				/* 竖轴居中 */
+				align-items: center;
+				-webkit-align-items: center;
+			}
+			#box1 > .box-a{
+				width: 50px;
+				height:50px;
+				background-color: yellow;
+				/* 可不设置横轴竖轴居中,直接设置margin:auto */
+				margin: auto;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box1">
+			<div class="box-a"></div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>图片预加载</title>
+	</head>
+	<style type="text/css">
+			#box{
+				margin: 0 auto;
+				width: 100%;
+				max-width: 800px;
+				overflow: hidden;
+				/* display: flex;
+				justify-content: center;
+				flex-direction: row;
+				flex-wrap: wrap;
+				align-content: flex-start; */
+				text-align: center;
+			}
+			#box img{
+				width: 300px;
+				height:150px;
+				margin: 6px 4px;
+				display: inline-block;
+				border: solid 1px #00FFFF;
+				border-radius: 10px;
+			}
+	</style>
+	<body>
+		<div id="box">
+			
+		</div>
+	</body>
+	<script src="api.js"></script>
+	<script>
+		var obj = ['img/2.jpg','img/3.jpg','img/2.jpg','img/3.jpg','img/2.jpg','img/3.jpg','img/2.jpg','img/3.jpg','img/2.jpg','img/3.jpg','img/2.jpg','img/3.jpg','img/2.jpg','img/3.jpg','img/2.jpg','img/3.jpg','img/2.jpg','img/3.jpg','img/2.jpg','img/3.jpg']
+		var box = document.getElementById('box')
+		var s = 10 ;
+		var i = 0 ;
+		var imgs = () => {
+			for(let i = 0 ; i<obj.length ; i++){
+				var text = `<img data-srcs = "${obj[i]}" src = "img/加载.png" alt="" width:"1920" height:"1080">` ;
+				box.innerHTML+=text
+			}
+		}
+		imgs()
+		window.onload = imgjia(document.getElementsByTagName('img'))
+		window.onscroll = function(){
+			setTimeout(()=>{
+				imgjia(document.getElementsByTagName('img'))
+			},500)
+			
+		}
+		
+		
+		
+		
+		
+	</script>
+</html>
